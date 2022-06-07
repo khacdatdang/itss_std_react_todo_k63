@@ -4,9 +4,29 @@
 　・タブで表示する
 　・サポートするステータスは「すべて」「未完了」「完了済み」
 */
-function Filter(  ) {
+function Filter( {value, onChange} ) {
+   const handleClick = (key, e) => {
+    e.preventDefault();
+    onChange(key);
+  };
+
   return (
     <div className="panel-tabs">
+       <a
+        href="#"
+        onClick={handleClick.bind(null, 'all')}
+        className={value === 'ALL' ?  'is-active' : ''}
+      >全て</a>
+      <a
+        href="#"
+        onClick={handleClick.bind(null, 'todo')}
+        className={value === 'TODO' ?  'is-active' : ''}
+      >未完了</a>
+      <a
+        href="#"
+        onClick={handleClick.bind(null, 'done')}
+        className={value === 'DONE' ?  'is-active' : ''}
+      >完了済み</a>
     </div>
   );
 }
